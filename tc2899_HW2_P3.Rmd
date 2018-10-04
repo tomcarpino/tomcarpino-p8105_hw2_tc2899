@@ -14,6 +14,34 @@ _Problem 3: Behavioral Risk Factors Surveillance System (BRFSS) for Selected Met
 
 *Read and Clean BRFSS data*
 ```{r}
+
+# importing brfss_smart2010 data
+
+devtools::install_github("p8105/p8105.datasets") 
+
+# add library that includes dataset 
+library("p8105.datasets")
+
+```
+
+```{r }
+# below: clean names, filter by "Overall Health", remove unwanted vars
+# long -> wide with key=reponse and value= data_value
+# new var: proportion (excellent + very good / total)
+
+brfss_data = 
+  brfss_smart2010 %>% 
+  janitor::clean_names() %>% 
+  filter(topic == "Overall Health") %>% 
+  select(-class, -topic, -question, 
+         -sample_size, -(confidence_limit_low:geo_location)) %>% 
+  spread(key = response, value = data_value) %>% 
+  janitor::clean_names() %>% 
+  mutate(
+    prop_high_positive = (excellent + very_good) /
+      (excellent + very_good + good + fair + poor))
+
+brfss_data
 ```
 
 *Format the data to use appropriate variable names*
