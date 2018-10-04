@@ -21,7 +21,9 @@ devtools::install_github("p8105/p8105.datasets")
 
 # add library that includes dataset 
 library("p8105.datasets")
+library(magrittr)
 
+brfss_smart2010
 ```
 
 ```{r }
