@@ -7,9 +7,70 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+install.packages("magrittr")
+library(magrittr)
 ```
 
 _Read and Clean Data_
+
+```{r, trashweheel_data}
+# import trash wheel data with relevant columns (no notes) clean names
+# remove rows without dumpster data, remove final sum at end
+# make sports_balls numeric 
+
+trashwheel_data = 
+  read_excel("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = "Mr. Trash Wheel", range = cell_cols("A:N")) %>% 
+  janitor::clean_names() %>% 
+  filter(!is.na(dumpster), dumpster != 23220) %>% 
+  mutate(sports_balls = as.numeric(sports_balls))
+
+trashwheel_data
+```
+
+# separate precipitation data
+
+# import 2016 precip data, clean names, rename col, remove NAs, make all col numeric, add 'year' var
+
+```{r precip_2016}
+precip_2016 = 
+  read_excel("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", 
+             sheet = "2016 Precipitation") %>% 
+  janitor::clean_names() %>% 
+  rename(month = precipitation_in, total_precip = x_1) %>%
+  filter(!is.na(month), !is.na(total_precip),
+         month != "Month", total_precip != "Total") %>% 
+  mutate(
+    month = as.numeric(month),
+    total_precip = as.numeric(total_precip),
+    year = "2016")
+
+head(precip_2016)
+```
+
+# import 2017 precip data, repeate above
+
+```{r precip_2017}
+precip_2017 = 
+  read_excel("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", 
+             sheet = "2017 Precipitation") %>% 
+  janitor::clean_names() %>% 
+  rename(month = precipitation_in, total_precip = x_1) %>% 
+  filter(!is.na(month), !is.na(total_precip), 
+         month != "Month", total_precip != "Total") %>% 
+  mutate(
+    month = as.numeric(month),
+    total_precip = as.numeric(total_precip),
+    year = "2017")
+
+precip_2017
+```
+
+Combine precipitation data
+# bind cleaned 2016 and 2017 precip tibbles, numeric months -> names
+precip_tidy = bind_rows(precip_2016, precip_2017) %>% 
+  mutate(month = month.name[month]) 
+
+precip_tidy
 
 ```{r}
 ```
