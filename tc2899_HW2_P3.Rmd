@@ -1,0 +1,75 @@
+---
+title: "tc2899_HW2_P3"
+author: "Tom"
+date: "October 4, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+_Problem 3: Behavioral Risk Factors Surveillance System (BRFSS) for Selected Metropolitan Area Risk Trends (SMART), 2002-2010_
+
+*Read and Clean BRFSS data*
+```{r}
+```
+
+*Format the data to use appropriate variable names*
+```{r}
+```
+
+*Exclude variables of class, topic, question, sample size, and everything from lower confidence limit to GeoLocation*
+```{r}
+```
+
+*Structure data so that responses (excellent to poor) are variables taking the value of Data_value*
+```{r}
+```
+
+*Create new variable showing proportion of responses that were “Excellent” or “Very Good”*
+```{r}
+```
+
+*How many unique locations are included in the dataset?*
+*Is every state represented?* 
+*What state is observed the most?*
+
+```{r}
+```
+
+*In 2002, what is the median of the “Excellent” response value?*
+
+```{r}
+```
+
+*Make a histogram of “Excellent” response values in the year 2002.*
+
+```{r}
+```
+
+*Make a scatterplot showing the proportion of “Excellent” response values in New York County and Queens County (both in NY State) in each year from 2002 to 2010.*
+
+```{r}
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

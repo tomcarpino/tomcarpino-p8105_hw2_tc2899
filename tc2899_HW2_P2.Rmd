@@ -1,0 +1,58 @@
+---
+title: "tc2899_HW2_P2"
+author: "Tom"
+date: "October 4, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+_Read and Clean Data_
+
+```{r}
+```
+
+*Specify the sheet in the Excel file and to omit columns containing notes (using the range argument and cell_cols() function)*
+```{r}
+```
+
+*Omit rows that do not include dumpster-specific data*
+```{r}
+```
+
+*Round the number of sports balls to the nearest integer and converts the result to an integer variable (using as.integer)*
+```{r}
+```
+
+*Read and Clean Precipitation Data for 2016 and 2017*
+```{r}
+```
+
+*For each year, omit rows without precipitation data and add a variable year.*
+```{r}
+```
+
+*For each year, combine datasets and convert month to a character variable use the variable 'month.name' which is built into R*
+```{r}
+```
+
+*In a paragraph (use inline R), note the number of observations in both resulting datasets, and give examples of key variables. For available data, what was the total precipitation in 2017? What was the median number of sports balls in a dumpster in 2016?*
+```{r}
+```
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
