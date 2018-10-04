@@ -130,12 +130,8 @@ $(document).ready(function () {
 
 <div id="problem-1-nyc-subway-transit" class="section level1">
 <h1><em>Problem 1: NYC Subway Transit</em></h1>
-</div>
-<div id="reading-and-cleaning-data" class="section level1">
-<h1><em>Reading and cleaning data</em></h1>
-</div>
-<div id="directions-read-and-clean-the-data-retain-line-station-name-station-latitude-longitude-routes-served-entry-vending-entrance-type-and-ada-compliance.-convert-the-entry-variable-from-character-yes-vs-no-to-a-logical-variable-the-ifelse-or-recode-function-may-be-useful." class="section level1">
-<h1><em>Directions: Read and clean the data; retain line, station, name, station latitude / longitude, routes served, entry, vending, entrance type, and ADA compliance. Convert the entry variable from character (YES vs NO) to a logical variable (the ifelse or recode function may be useful).</em></h1>
+<p><em>Reading and cleaning data</em></p>
+<p><em>Directions: Read and clean the data; retain line, station, name, station latitude / longitude, routes served, entry, vending, entrance type, and ADA compliance. Convert the entry variable from character (YES vs NO) to a logical variable (the ifelse or recode function may be useful).</em></p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## -- Attaching packages -------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
 <pre><code>## v ggplot2 3.0.0     v purrr   0.2.5
@@ -184,34 +180,17 @@ mutate(entry = recode(entry, &quot;YES&quot; = TRUE, &quot;NO&quot; = FALSE))</c
 ## #   route4 &lt;chr&gt;, route5 &lt;chr&gt;, route6 &lt;chr&gt;, route7 &lt;chr&gt;, route8 &lt;int&gt;,
 ## #   route9 &lt;int&gt;, route10 &lt;int&gt;, route11 &lt;int&gt;, entrance_type &lt;chr&gt;,
 ## #   entry &lt;lgl&gt;, vending &lt;chr&gt;, ada &lt;lgl&gt;</code></pre>
-</div>
-<div id="diretions-write-a-short-paragraph-about-this-dataset-explain-briefly-what-variables-the-dataset-contains-describe-your-data-cleaning-steps-so-far-and-give-the-dimension-rows-x-columns-of-the-resulting-dataset." class="section level1">
-<h1><em>Diretions: Write a short paragraph about this dataset – explain briefly what variables the dataset contains, describe your data cleaning steps so far, and give the dimension (rows x columns) of the resulting dataset.</em></h1>
-<div id="the-previous-dataset-contains-these-variables-line-station-name-station-latitudelongitude-which-routs-is-served-the-new-entry-variable-truefalse-vending-yesno-entrance-type-elevator-stair-door-and-ada-compliance-truefalse." class="section level2">
-<h2>The previous dataset contains these variables: line, station name, station latitude/longitude, which routs is served, the new entry variable (true/false), vending (yes/no), entrance type (elevator, stair, door), and ADA compliance (true/false).</h2>
-</div>
-<div id="i-ignored-the-undesired-variables-using-select-and-recoded-the-entry-variable-from-character-to-logical-using-mutate-and-recode.-the-resulting-dataset-is-1868-rows-x-19-columns." class="section level2">
-<h2>I ignored the undesired variables using ‘select’ and recoded the entry variable from character to logical using ‘mutate’ and ‘recode’. The resulting dataset is 1,868 rows x 19 columns.</h2>
-</div>
-<div id="are-these-data-tidy" class="section level2">
-<h2><em>Are these data tidy?</em></h2>
-</div>
-<div id="how-many-distinct-stations-are-there" class="section level2">
-<h2><em>How many distinct stations are there?</em></h2>
-</div>
-<div id="to-understand-how-many-distinct-stations-there-are-i-used-the-distinct-and-nrow-functions-which-yielded-an-answer-of-465-distinct-stations." class="section level2">
-<h2>To understand how many distinct stations there are, I used the <em>distinct</em> and <em>nrow()</em> functions, which yielded an answer of 465 distinct stations.</h2>
+<p><em>Diretions: Write a short paragraph about this dataset – explain briefly what variables the dataset contains, describe your data cleaning steps so far, and give the dimension (rows x columns) of the resulting dataset.</em></p>
+<p>The previous dataset contains these variables: line, station name, station latitude/longitude, which routs is served, the new entry variable (true/false), vending (yes/no), entrance type (elevator, stair, door), and ADA compliance (true/false).</p>
+<p>I ignored the undesired variables using ‘select’ and recoded the entry variable from character to logical using ‘mutate’ and ‘recode’. The resulting dataset is 1,868 rows x 19 columns.</p>
+<p><em>Are these data tidy?</em></p>
+<p><em>How many distinct stations are there?</em></p>
+<p>To understand how many distinct stations there are, I used the <em>distinct</em> and <em>nrow()</em> functions, which yielded an answer of 465 distinct stations.</p>
 <pre class="r"><code>nrow(distinct(subway_data, station_name, line))</code></pre>
 <pre><code>## [1] 465</code></pre>
-</div>
-<div id="how-many-stations-are-ada-compliant" class="section level2">
-<h2><em>How many stations are ADA compliant?</em></h2>
-</div>
-<div id="what-proportion-of-station-entrances-exits-without-vending-allow-entrance" class="section level2">
-<h2><em>What proportion of station entrances / exits without vending allow entrance?</em></h2>
-</div>
-<div id="after-reformatting-the-data-so-that-route-number-and-route-name-are-distinct-variables-how-many-distinct-stations-serve-the-a-train-and-how-many-of-these-a-trains-are-ada-compliant" class="section level2">
-<h2><em>After reformatting the data so that route number and route name are distinct variables, how many distinct stations serve the A train and how many of these A trains are ADA compliant?</em></h2>
+<p><em>How many stations are ADA compliant?</em></p>
+<p><em>What proportion of station entrances / exits without vending allow entrance?</em></p>
+<p><em>After reformatting the data so that route number and route name are distinct variables, how many distinct stations serve the A train and how many of these A trains are ADA compliant?</em></p>
 <pre class="r"><code>summary(cars)</code></pre>
 <pre><code>##      speed           dist       
 ##  Min.   : 4.0   Min.   :  2.00  
@@ -220,7 +199,6 @@ mutate(entry = recode(entry, &quot;YES&quot; = TRUE, &quot;NO&quot; = FALSE))</c
 ##  Mean   :15.4   Mean   : 42.98  
 ##  3rd Qu.:19.0   3rd Qu.: 56.00  
 ##  Max.   :25.0   Max.   :120.00</code></pre>
-</div>
 <div id="including-plots" class="section level2">
 <h2>Including Plots</h2>
 <p>You can also embed plots, for example:</p>
