@@ -26,10 +26,10 @@ library(magrittr)
 brfss_smart2010
 ```
 
-```{r }
+```{r problem3}
 # below: clean names, filter by "Overall Health", remove unwanted vars
 # long -> wide with key=reponse and value= data_value
-# new var: proportion (excellent + very good / total)
+# new variable: proportion (excellent + very good / total)
 
 brfss_data = 
   brfss_smart2010 %>% 
@@ -40,27 +40,13 @@ brfss_data =
   spread(key = response, value = data_value) %>% 
   janitor::clean_names() %>% 
   mutate(
-    prop_high_positive = (excellent + very_good) /
+    prop_positive = (excellent + very_good) /
       (excellent + very_good + good + fair + poor))
 
 brfss_data
 ```
 
-*Format the data to use appropriate variable names*
-```{r}
-```
-
-*Exclude variables of class, topic, question, sample size, and everything from lower confidence limit to GeoLocation*
-```{r}
-```
-
-*Structure data so that responses (excellent to poor) are variables taking the value of Data_value*
-```{r}
-```
-
-*Create new variable showing proportion of responses that were “Excellent” or “Very Good”*
-```{r}
-```
+#*Questions*
 
 *How many unique locations are included in the dataset?*
 *Is every state represented?* 
