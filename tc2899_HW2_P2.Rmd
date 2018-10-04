@@ -23,7 +23,7 @@ library(readxl)
 HealthyHarborWaterWheelTotals2018_7_28 <- read_excel("HealthyHarborWaterWheelTotals2018-7-28.xlsx") %>% 
   janitor::clean_names() %>% 
   filter(!is.na(dumpster), dumpster != 23220) %>% 
-  mutate(sports_balls = as.integer(sports_balls))
+  mutate(sports_balls = as.numeric(sports_balls))
 
 trashwheel_data
 ```
