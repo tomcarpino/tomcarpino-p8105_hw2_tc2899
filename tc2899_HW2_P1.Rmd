@@ -9,11 +9,50 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+#_Problem 1: NYC Subway Transit_
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#*Reading and cleaning data*
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#*Directions: Read and clean the data; retain line, station, name, station latitude / longitude, routes served, entry, vending, entrance type, and ADA compliance. Convert the entry variable from character (YES vs NO) to a logical variable (the ifelse or recode function may be useful).*
+
+```{r}
+library(tidyverse)
+getwd()
+subway_data = read_csv("./NYC_Transit_Subway_Entrance_And_Exit_Data.csv") %>%
+janitor::clean_names() %>%
+select(-division, -exit_only, -staffing, -staff_hours, -ada_notes, -entrance_location, -entrance_longitude, -entrance_latitude, -station_location, -corner, -east_west_street, -north_south_street, -free_crossover) %>%
+mutate(entry = recode(entry, "YES" = TRUE, "NO" = FALSE))
+subway_data
+```
+
+#*Diretions: Write a short paragraph about this dataset – explain briefly what variables the dataset contains, describe your data cleaning steps so far, and give the dimension (rows x columns) of the resulting dataset.* 
+
+##The previous dataset contains these variables: line, station name, station latitude/longitude, which routs is served, the new entry variable (true/false), vending (yes/no), entrance type (elevator, stair, door), and ADA compliance (true/false). 
+
+##I ignored the undesired variables using 'select' and recoded the entry variable from character to logical using 'mutate' and 'recode'. The resulting dataset is 1,868 rows x 19 columns. 
+
+##*Are these data tidy?*
+
+##*How many distinct stations are there?*
+
+##To understand how many distinct stations there are, I used the _distinct_ and _nrow()_ functions, which yielded an answer of 465 distinct stations.  
+
+```{r}
+nrow(distinct(subway_data, station_name, line))
+```
+
+##*How many stations are ADA compliant?*
+```{r}
+```
+
+##*What proportion of station entrances / exits without vending allow entrance?*
+```{r}
+```
+
+##*After reformatting the data so that route number and route name are distinct variables, how many distinct stations serve the A train and how many of these A trains are ADA compliant?*
+```{r}
+```
+
 
 ```{r cars}
 summary(cars)
