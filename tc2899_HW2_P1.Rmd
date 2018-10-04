@@ -43,10 +43,19 @@ nrow(distinct(subway_data, station_name, line))
 
 *How many stations are ADA compliant?*
 ```{r}
-```
 
+nrow(distinct(subway_data, line, station_name, .keep_all = TRUE) %>% 
+  filter(ada == TRUE))
+
+```
+  _84_ stations are ADA compliant. 
+  
 *What proportion of station entrances / exits without vending allow entrance?*
 ```{r}
+
+filter(subway_data, vending == "NO") %>% 
+  filter(entry == TRUE)
+
 ```
 
 *After reformatting the data so that route number and route name are distinct variables, how many distinct stations serve the A train and how many of these A trains are ADA compliant?*
