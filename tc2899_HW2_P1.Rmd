@@ -63,19 +63,24 @@ Of the stations without vending, 0.377 allow entrance.
 
 *After reformatting the data so that route number and route name are distinct variables, how many distinct stations serve the A train and how many of these A trains are ADA compliant?*
 ```{r}
+
+subway_data_A = 
+  gather(subway_data, key = route_number,
+         value = route_name, route1:route11) %>% 
+  filter(route_name == "A") %>% 
+  distinct(line, station_name, .keep_all = TRUE)  
+
+nrow(subway_data_A)
+
+subway_data_ADA_A = 
+  gather(subway_data, key = route_number,
+         value = route_name, route1:route11) %>% 
+  filter(route_name == "A") %>% 
+  distinct(line, station_name, .keep_all = TRUE)  %>% 
+    filter(ada == TRUE)
+
+nrow(subway_data_ADA_A)
+
 ```
 
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+There are _60_ distinct stations, _17_ of which are ADA compliant. 
