@@ -133,12 +133,12 @@ $(document).ready(function () {
 <p><em>Reading and cleaning data</em></p>
 <p><em>Directions: Read and clean the data; retain line, station, name, station latitude / longitude, routes served, entry, vending, entrance type, and ADA compliance. Convert the entry variable from character (YES vs NO) to a logical variable (the ifelse or recode function may be useful).</em></p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages -------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## -- Attaching packages ------------------------------------------- tidyverse 1.2.1 --</code></pre>
 <pre><code>## v ggplot2 3.0.0     v purrr   0.2.5
 ## v tibble  1.4.2     v dplyr   0.7.6
 ## v tidyr   0.8.1     v stringr 1.3.1
 ## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## -- Conflicts ----------------------------------------------------------------- tidyverse_conflicts() --
+<pre><code>## -- Conflicts ---------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>getwd()</code></pre>
@@ -189,7 +189,15 @@ mutate(entry = recode(entry, &quot;YES&quot; = TRUE, &quot;NO&quot; = FALSE))</c
 <pre class="r"><code>nrow(distinct(subway_data, station_name, line))</code></pre>
 <pre><code>## [1] 465</code></pre>
 <p><em>How many stations are ADA compliant?</em></p>
+<pre class="r"><code>nrow(distinct(subway_data, line, station_name, .keep_all = TRUE) %&gt;% 
+  filter(ada == TRUE))</code></pre>
+<pre><code>## [1] 84</code></pre>
+<p><em>84</em> stations are ADA compliant.</p>
 <p><em>What proportion of station entrances / exits without vending allow entrance?</em></p>
+<pre class="r"><code>nrow(filter(subway_data, vending == &quot;NO&quot;) %&gt;% 
+  filter(entry == TRUE)) / nrow(filter(subway_data, vending == &quot;NO&quot;))</code></pre>
+<pre><code>## [1] 0.3770492</code></pre>
+<p>Of the stations without vending, 0.377 allow entrance.</p>
 <p><em>After reformatting the data so that route number and route name are distinct variables, how many distinct stations serve the A train and how many of these A trains are ADA compliant?</em></p>
 <pre class="r"><code>summary(cars)</code></pre>
 <pre><code>##      speed           dist       
