@@ -19,7 +19,13 @@ _Read and Clean Data_
 # make sports_balls numeric 
 
 trashwheel_data = 
-  read_excel("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = "Mr. Trash Wheel", range = cell_cols("A:N")) %>% 
+  library(readxl)
+HealthyHarborWaterWheelTotals2017_9_26 <- read_excel("HealthyHarborWaterWheelTotals2017-9-26.xlsx")
+```
+
+```{r trashwheel_pt2}
+trashwheel_data = 
+  trashwheel_data 
   janitor::clean_names() %>% 
   filter(!is.na(dumpster), dumpster != 23220) %>% 
   mutate(sports_balls = as.numeric(sports_balls))
