@@ -77,13 +77,13 @@ precip_2017
 ```
 
 Combine precipitation data
+
+```{r }
 # bind cleaned 2016 and 2017 precip tibbles, numeric months -> names
 precip_tidy = bind_rows(precip_2016, precip_2017) %>% 
   mutate(month = month.name[month]) 
 
 precip_tidy
-
-```{r}
 ```
 
 *Specify the sheet in the Excel file and to omit columns containing notes (using the range argument and cell_cols() function)*
