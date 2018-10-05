@@ -44,7 +44,7 @@ trashwheel_data
 
 ```{r precip_2016}
 precip_2016 = 
-  read_excel("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", 
+  read_xlsx("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", 
              sheet = "2016 Precipitation") %>% 
   janitor::clean_names() %>% 
   rename(month = precipitation_in, total_precip = x_1) %>%
@@ -62,7 +62,7 @@ head(precip_2016)
 
 ```{r precip_2017}
 precip_2017 = 
-  read_excel("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", 
+  readxl_xlsx("./data/HealthyHarborWaterWheelTotals2017-9-26.xlsx", 
              sheet = "2017 Precipitation") %>% 
   janitor::clean_names() %>% 
   rename(month = precipitation_in, total_precip = x_1) %>% 
@@ -76,55 +76,12 @@ precip_2017 =
 precip_2017
 ```
 
-Combine precipitation data
+Combining precipitation data
 
 ```{r }
 # bind cleaned 2016 and 2017 precip tibbles, numeric months -> names
-precip_tidy = bind_rows(precip_2016, precip_2017) %>% 
+precip_tidy = group(precip_2016, precip_2017) %>% 
   mutate(month = month.name[month]) 
 
 precip_tidy
 ```
-
-*Specify the sheet in the Excel file and to omit columns containing notes (using the range argument and cell_cols() function)*
-```{r}
-```
-
-*Omit rows that do not include dumpster-specific data*
-```{r}
-```
-
-*Round the number of sports balls to the nearest integer and converts the result to an integer variable (using as.integer)*
-```{r}
-```
-
-*Read and Clean Precipitation Data for 2016 and 2017*
-```{r}
-```
-
-*For each year, omit rows without precipitation data and add a variable year.*
-```{r}
-```
-
-*For each year, combine datasets and convert month to a character variable use the variable 'month.name' which is built into R*
-```{r}
-```
-
-*In a paragraph (use inline R), note the number of observations in both resulting datasets, and give examples of key variables. For available data, what was the total precipitation in 2017? What was the median number of sports balls in a dumpster in 2016?*
-```{r}
-```
-
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
