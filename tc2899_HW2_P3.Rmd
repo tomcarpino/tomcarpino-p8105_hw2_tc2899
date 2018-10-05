@@ -53,39 +53,56 @@ brfss_data
 *What state is observed the most?*
 
 ```{r}
+# unique locations: using state (locationabbr) and county (locationdesc):
+nrow(distinct(brfss_data, locationabbr, locationdesc, .keep_all = FALSE))
+
+# unique states represented:
+nrow(distinct(brfss_data, locationabbr, .keep_all = FALSE))
+
+# most observed state** tbd: 
+
+aggdata <- aggregate(brfss_smart2010, by = list(brfss_smart2010$locationabbr), 
+                  FUN = sum, na.rm=TRUE)
+
 ```
 
 *In 2002, what is the median of the “Excellent” response value?*
 
 ```{r}
+# first group by year, filter to 2002 only, summarize -> median of "excellent"
+group_by(brfss_data, year) %>% 
+  filter(year == 2002) %>% 
+  summarize(median(excellent)) 
+
 ```
 
 *Make a histogram of “Excellent” response values in the year 2002.*
 
 ```{r}
+
+# creating new set // first restrict by year - filter for 2002, select excellent --> hist
+
+new_brfss = 
+  brfss_smart2010 %>% 
+  filter(Year == 2002) %>%
+  filter(Response == "Excellent")
+
+new_brfss
+
+ggplot(new_brfss, aes(x = Sample_Size)) + 
+  geom_histogram()
+
 ```
 
 *Make a scatterplot showing the proportion of “Excellent” response values in New York County and Queens County (both in NY State) in each year from 2002 to 2010.*
 
 ```{r}
+
+new_york = 
+  brfss_smart2010 %>% 
+  filter(Year == 2002:2010) %>%
+  filter(Locationdesc == "NY - New York County")
+
+new_york
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
